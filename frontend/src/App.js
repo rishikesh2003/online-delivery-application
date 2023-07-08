@@ -18,7 +18,7 @@ function App() {
           element={<DeliveryPartnerRegister />}
         />
         <Route path="/shop-login" element={<ShopLogin />} />
-        Route path="/shop-register" element={<ShopRegister />} />
+        <Route path="/shop-register" element={<ShopRegister />} />
       </Routes>
     </Router>
   );
