@@ -1,5 +1,11 @@
 function CustomerRegister() {
-  return <h1>Customer Register</h1>;
+  return (
+    <div className="flex-center">
+      <form>
+        <p>Customer Register</p>
+      </form>
+    </div>
+  );
 }
 
 export default CustomerRegister;
