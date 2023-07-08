@@ -24,7 +24,7 @@ function CustomerLogin() {
             onChange={(e) => {
               setCustomerLogin({ ...customerLogin, email: e.target.value });
             }}
-            type="text"
+            type="email"
             id="email"
             label="Email"
             variant="filled"
@@ -38,7 +38,7 @@ function CustomerLogin() {
             onChange={(e) => {
               setCustomerLogin({ ...customerLogin, password: e.target.value });
             }}
-            type="text"
+            type="password"
             id="password"
             label="Password"
             variant="filled"
