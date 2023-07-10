@@ -1,6 +1,8 @@
 import { TextField, Button } from "@mui/material";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 function ShopAuth() {
+  const navigate = useNavigate();
   const [state, setState] = useState("login");
 
   const [shopOwnerLogin, setCustomerLogin] = useState({
@@ -97,8 +99,29 @@ function ShopAuth() {
               />
             </div>
             <div className="field-container">
+              <Link to={"/forgot-password"}>Forgot Password?</Link>
+            </div>
+
+            <div className="field-container">
               <Button type="submit" variant="contained" fullWidth>
                 Login
+              </Button>
+            </div>
+            <div className="button-header">
+              <Button
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
+                Customer?
+              </Button>
+              |
+              <Button
+                onClick={() => {
+                  navigate("/del-partner-auth");
+                }}
+              >
+                Delivery Partner?
               </Button>
             </div>
           </>
@@ -194,6 +217,23 @@ function ShopAuth() {
             <div className="field-container">
               <Button variant="contained" type="submit" fullWidth>
                 Register
+              </Button>
+            </div>
+            <div className="button-header">
+              <Button
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
+                Customer?
+              </Button>
+              |
+              <Button
+                onClick={() => {
+                  navigate("/shop-auth");
+                }}
+              >
+                Shop Owner?
               </Button>
             </div>
           </>
