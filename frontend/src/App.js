@@ -1,5 +1,5 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import DeliveryPartnerLogin from "./Pages/DeliveryPartner/DeliveryPartnerLogin";
+import DeliveryPartnerAuth from "./Pages/DeliveryPartner/DeliveryPartnerAuth";
 import ShopLogin from "./Pages/Shop/ShopLogin";
 import Home from "./Pages/Home/Home";
 import Error from "./Pages/Error/Error";
@@ -17,7 +17,7 @@ function App() {
       ) : (
         <Routes>
           <Route path="/" element={<CustomerAuth />} />
-          <Route path="/del-partner-auth" element={<DeliveryPartnerLogin />} />
+          <Route path="/del-partner-auth" element={<DeliveryPartnerAuth />} />
           <Route path="/shop-auth" element={<ShopLogin />} />
         </Routes>
       )}
