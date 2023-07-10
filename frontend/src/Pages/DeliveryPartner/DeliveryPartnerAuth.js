@@ -47,6 +47,7 @@ function DeliveryPartnerAuth() {
       >
         <div className="button-header">
           <Button
+            className="color-green"
             onClick={() => {
               setState("login");
             }}
@@ -55,6 +56,7 @@ function DeliveryPartnerAuth() {
           </Button>
           |
           <Button
+            className="color-green"
             onClick={() => {
               setState("register");
             }}
@@ -105,20 +107,27 @@ function DeliveryPartnerAuth() {
             </div>
 
             <div className="field-container">
-              <Button type="submit" variant="contained" fullWidth>
+              <Button
+                className="bg-green"
+                type="submit"
+                variant="contained"
+                fullWidth
+              >
                 Login
               </Button>
             </div>
             <div className="button-header">
               <Button
+                className="color-green"
                 onClick={() => {
-                  navigate("/");
+                  navigate("/customer-auth");
                 }}
               >
                 Customer?
               </Button>
               |
               <Button
+                className="color-green"
                 onClick={() => {
                   navigate("/shop-auth");
                 }}
@@ -215,20 +224,27 @@ function DeliveryPartnerAuth() {
               />
             </div>
             <div className="field-container">
-              <Button variant="contained" type="submit" fullWidth>
+              <Button
+                className="bg-green"
+                variant="contained"
+                type="submit"
+                fullWidth
+              >
                 Register
               </Button>
             </div>
             <div className="button-header">
               <Button
+                className="color-green"
                 onClick={() => {
-                  navigate("/");
+                  navigate("/customer-auth");
                 }}
               >
-                Customer
+                Customer?
               </Button>
               |
               <Button
+                className="color-green"
                 onClick={() => {
                   navigate("/shop-auth");
                 }}

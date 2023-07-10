@@ -46,6 +46,7 @@ function ShopAuth() {
       >
         <div className="button-header">
           <Button
+            className="color-green"
             onClick={() => {
               setState("login");
             }}
@@ -54,6 +55,7 @@ function ShopAuth() {
           </Button>
           |
           <Button
+            className="color-green"
             onClick={() => {
               setState("register");
             }}
@@ -103,20 +105,27 @@ function ShopAuth() {
             </div>
 
             <div className="field-container">
-              <Button type="submit" variant="contained" fullWidth>
+              <Button
+                className="bg-green"
+                type="submit"
+                variant="contained"
+                fullWidth
+              >
                 Login
               </Button>
             </div>
             <div className="button-header">
               <Button
+                className="color-green"
                 onClick={() => {
-                  navigate("/");
+                  navigate("/customer-auth");
                 }}
               >
                 Customer?
               </Button>
               |
               <Button
+                className="color-green"
                 onClick={() => {
                   navigate("/del-partner-auth");
                 }}
@@ -215,25 +224,32 @@ function ShopAuth() {
               />
             </div>
             <div className="field-container">
-              <Button variant="contained" type="submit" fullWidth>
+              <Button
+                className="bg-green"
+                variant="contained"
+                type="submit"
+                fullWidth
+              >
                 Register
               </Button>
             </div>
             <div className="button-header">
               <Button
+                className="color-green"
                 onClick={() => {
-                  navigate("/");
+                  navigate("/customer-auth");
                 }}
               >
                 Customer?
               </Button>
               |
               <Button
+                className="color-green"
                 onClick={() => {
-                  navigate("/shop-auth");
+                  navigate("/del-partner-auth");
                 }}
               >
-                Shop Owner?
+                Delivery Partner?
               </Button>
             </div>
           </>

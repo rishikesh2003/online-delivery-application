@@ -5,23 +5,32 @@ import Home from "./Pages/Home/Home";
 import Error from "./Pages/Error/Error";
 import CustomerAuth from "./Pages/Customer/CustomerAuth";
 import ForgotPass from "./Pages/ForgotPass/ForgotPass";
+import Navbar from "./Components/Navbar";
 
 function App() {
   const isLoggedIn = false;
   return (
     <Router>
       {isLoggedIn ? (
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="*" element={<Error />} />
-        </Routes>
+        <>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="*" element={<Error />} />
+          </Routes>
+        </>
       ) : (
-        <Routes>
-          <Route path="/" element={<CustomerAuth />} />
-          <Route path="/del-partner-auth" element={<DeliveryPartnerAuth />} />
-          <Route path="/shop-auth" element={<ShopAuth />} />
-          <Route path="/forgot-password" element={<ForgotPass />} />
-        </Routes>
+        <>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/customer-auth" element={<CustomerAuth />} />
+            <Route path="/del-partner-auth" element={<DeliveryPartnerAuth />} />
+            <Route path="/shop-auth" element={<ShopAuth />} />
+            <Route path="/forgot-password" element={<ForgotPass />} />
+            <Route path="*" element={<Error />} />
+          </Routes>
+        </>
       )}
     </Router>
   );
