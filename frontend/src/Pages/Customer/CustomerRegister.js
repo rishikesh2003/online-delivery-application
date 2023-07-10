@@ -35,7 +35,7 @@ function CustomerRegister() {
             id="first-name"
             label="First Name"
             required
-            variant="filled"
+            variant="outlined"
             fullWidth
           />
         </div>
@@ -49,7 +49,7 @@ function CustomerRegister() {
             id="last-name"
             label="Last Name"
             required
-            variant="filled"
+            variant="outlined"
             fullWidth
           />
         </div>
@@ -63,7 +63,7 @@ function CustomerRegister() {
             id="email"
             label="Email"
             required
-            variant="filled"
+            variant="outlined"
             fullWidth
           />
         </div>
@@ -77,7 +77,7 @@ function CustomerRegister() {
             id="password"
             label="Password"
             required
-            variant="filled"
+            variant="outlined"
             fullWidth
           />
         </div>
@@ -91,7 +91,7 @@ function CustomerRegister() {
             id="confirm-password"
             label="Confirm password"
             required
-            variant="filled"
+            variant="outlined"
             fullWidth
           />
         </div>
