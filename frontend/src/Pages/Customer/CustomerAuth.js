@@ -1,6 +1,9 @@
 import { TextField, Button } from "@mui/material";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 function CustomerAuth() {
+  const navigate = useNavigate();
   const [customerLogin, setCustomerLogin] = useState({
     email: "",
     password: "",
@@ -62,7 +65,6 @@ function CustomerAuth() {
         <h1>Customer</h1>
         {state === "login" ? (
           <>
-            {" "}
             <div className="field-container">
               <TextField
                 required
@@ -95,8 +97,28 @@ function CustomerAuth() {
               />
             </div>
             <div className="field-container">
+              <Link to={"/forgot-password"}>Forgot Password?</Link>
+            </div>
+            <div className="field-container">
               <Button type="submit" variant="contained" fullWidth>
                 Login
+              </Button>
+            </div>
+            <div className="button-header">
+              <Button
+                onClick={() => {
+                  navigate("/del-partner-auth");
+                }}
+              >
+                Delivery Partner?
+              </Button>
+              |
+              <Button
+                onClick={() => {
+                  navigate("shop-auth");
+                }}
+              >
+                Shop Owner?
               </Button>
             </div>
           </>
@@ -175,6 +197,23 @@ function CustomerAuth() {
             <div className="field-container">
               <Button variant="contained" type="submit" fullWidth>
                 Register
+              </Button>
+            </div>
+            <div className="button-header">
+              <Button
+                onClick={() => {
+                  navigate("/del-partner-auth");
+                }}
+              >
+                Delivery Partner?
+              </Button>
+              |
+              <Button
+                onClick={() => {
+                  navigate("shop-auth");
+                }}
+              >
+                Shop Owner?
               </Button>
             </div>
           </>

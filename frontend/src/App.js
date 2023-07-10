@@ -4,6 +4,7 @@ import ShopLogin from "./Pages/Shop/ShopLogin";
 import Home from "./Pages/Home/Home";
 import Error from "./Pages/Error/Error";
 import CustomerAuth from "./Pages/Customer/CustomerAuth";
+import ForgotPass from "./Pages/ForgotPass/ForgotPass";
 
 function App() {
   const isLoggedIn = false;
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" element={<CustomerAuth />} />
           <Route path="/del-partner-auth" element={<DeliveryPartnerLogin />} />
           <Route path="/shop-auth" element={<ShopLogin />} />
+          <Route path="/forgot-password" element={<ForgotPass />} />
         </Routes>
       )}
     </Router>
