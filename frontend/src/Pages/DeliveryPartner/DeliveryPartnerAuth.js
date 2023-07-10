@@ -45,215 +45,220 @@ function DeliveryPartnerAuth() {
           }
         }}
       >
-        <div className="button-header">
-          <Button
-            className="color-green"
-            onClick={() => {
-              setState("login");
-            }}
-          >
-            Login
-          </Button>
-          |
-          <Button
-            className="color-green"
-            onClick={() => {
-              setState("register");
-            }}
-          >
-            Register
-          </Button>
+        <div className="gif">
+          <img src="/deliverygif.gif" alt="gif" />
         </div>
-        <h1>Delivery Partner</h1>
+        <div>
+          <div className="button-header">
+            <Button
+              className="color-green"
+              onClick={() => {
+                setState("login");
+              }}
+            >
+              Login
+            </Button>
+            |
+            <Button
+              className="color-green"
+              onClick={() => {
+                setState("register");
+              }}
+            >
+              Register
+            </Button>
+          </div>
+          <h1>Delivery Partner</h1>
 
-        {state === "login" ? (
-          <>
-            <div className="field-container">
-              <TextField
-                required
-                value={deliveryPartnerLogin.email}
-                onChange={(e) => {
-                  setDeliveryPartnerLogin({
-                    ...deliveryPartnerLogin,
-                    email: e.target.value,
-                  });
-                }}
-                type="email"
-                id="email"
-                label="Email"
-                variant="outlined"
-                fullWidth
-              />
-            </div>
-            <div className="field-container">
-              <TextField
-                required
-                value={deliveryPartnerLogin.password}
-                onChange={(e) => {
-                  setDeliveryPartnerLogin({
-                    ...deliveryPartnerLogin,
-                    password: e.target.value,
-                  });
-                }}
-                type="password"
-                id="password"
-                label="Password"
-                variant="outlined"
-                fullWidth
-              />
-            </div>
-            <div className="field-container">
-              <Link to={"/forgot-password"}>Forgot Password?</Link>
-            </div>
+          {state === "login" ? (
+            <>
+              <div className="field-container">
+                <TextField
+                  required
+                  value={deliveryPartnerLogin.email}
+                  onChange={(e) => {
+                    setDeliveryPartnerLogin({
+                      ...deliveryPartnerLogin,
+                      email: e.target.value,
+                    });
+                  }}
+                  type="email"
+                  id="email"
+                  label="Email"
+                  variant="outlined"
+                  fullWidth
+                />
+              </div>
+              <div className="field-container">
+                <TextField
+                  required
+                  value={deliveryPartnerLogin.password}
+                  onChange={(e) => {
+                    setDeliveryPartnerLogin({
+                      ...deliveryPartnerLogin,
+                      password: e.target.value,
+                    });
+                  }}
+                  type="password"
+                  id="password"
+                  label="Password"
+                  variant="outlined"
+                  fullWidth
+                />
+              </div>
+              <div className="field-container">
+                <Link to={"/forgot-password"}>Forgot Password?</Link>
+              </div>
 
-            <div className="field-container">
-              <Button
-                className="bg-green"
-                type="submit"
-                variant="contained"
-                fullWidth
-              >
-                Login
-              </Button>
-            </div>
-            <div className="button-header">
-              <Button
-                className="color-green"
-                onClick={() => {
-                  navigate("/customer-auth");
-                }}
-              >
-                Customer?
-              </Button>
-              |
-              <Button
-                className="color-green"
-                onClick={() => {
-                  navigate("/shop-auth");
-                }}
-              >
-                Shop Owner?
-              </Button>
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="field-container">
-              <TextField
-                value={deliveryPartner.firstName}
-                onChange={(e) => {
-                  setDeliveryPartner({
-                    ...deliveryPartner,
-                    firstName: e.target.value,
-                  });
-                }}
-                type="text"
-                id="first-name"
-                label="First Name"
-                required
-                variant="outlined"
-                fullWidth
-              />
-            </div>
-            <div className="field-container">
-              <TextField
-                value={deliveryPartner.lastName}
-                onChange={(e) => {
-                  setDeliveryPartner({
-                    ...deliveryPartner,
-                    lastName: e.target.value,
-                  });
-                }}
-                type="text"
-                id="last-name"
-                label="Last Name"
-                required
-                variant="outlined"
-                fullWidth
-              />
-            </div>
-            <div className="field-container">
-              <TextField
-                value={deliveryPartner.email}
-                onChange={(e) => {
-                  setDeliveryPartner({
-                    ...deliveryPartner,
-                    email: e.target.value,
-                  });
-                }}
-                type="email"
-                id="email"
-                label="Email"
-                required
-                variant="outlined"
-                fullWidth
-              />
-            </div>
-            <div className="field-container">
-              <TextField
-                value={deliveryPartner.password}
-                onChange={(e) => {
-                  setDeliveryPartner({
-                    ...deliveryPartner,
-                    password: e.target.value,
-                  });
-                }}
-                type="password"
-                id="password"
-                label="Password"
-                required
-                variant="outlined"
-                fullWidth
-              />
-            </div>
-            <div className="field-container">
-              <TextField
-                value={deliveryPartner.confirmPassword}
-                onChange={(e) => {
-                  setDeliveryPartner({
-                    ...deliveryPartner,
-                    confirmPassword: e.target.value,
-                  });
-                }}
-                type="password"
-                id="confirm-password"
-                label="Confirm password"
-                required
-                variant="outlined"
-                fullWidth
-              />
-            </div>
-            <div className="field-container">
-              <Button
-                className="bg-green"
-                variant="contained"
-                type="submit"
-                fullWidth
-              >
-                Register
-              </Button>
-            </div>
-            <div className="button-header">
-              <Button
-                className="color-green"
-                onClick={() => {
-                  navigate("/customer-auth");
-                }}
-              >
-                Customer?
-              </Button>
-              |
-              <Button
-                className="color-green"
-                onClick={() => {
-                  navigate("/shop-auth");
-                }}
-              >
-                Shop Owner?
-              </Button>
-            </div>
-          </>
-        )}
+              <div className="field-container">
+                <Button
+                  className="bg-green"
+                  type="submit"
+                  variant="contained"
+                  fullWidth
+                >
+                  Login
+                </Button>
+              </div>
+              <div className="button-header">
+                <Button
+                  className="color-green"
+                  onClick={() => {
+                    navigate("/customer-auth");
+                  }}
+                >
+                  Customer?
+                </Button>
+                |
+                <Button
+                  className="color-green"
+                  onClick={() => {
+                    navigate("/shop-auth");
+                  }}
+                >
+                  Shop Owner?
+                </Button>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="field-container">
+                <TextField
+                  value={deliveryPartner.firstName}
+                  onChange={(e) => {
+                    setDeliveryPartner({
+                      ...deliveryPartner,
+                      firstName: e.target.value,
+                    });
+                  }}
+                  type="text"
+                  id="first-name"
+                  label="First Name"
+                  required
+                  variant="outlined"
+                  fullWidth
+                />
+              </div>
+              <div className="field-container">
+                <TextField
+                  value={deliveryPartner.lastName}
+                  onChange={(e) => {
+                    setDeliveryPartner({
+                      ...deliveryPartner,
+                      lastName: e.target.value,
+                    });
+                  }}
+                  type="text"
+                  id="last-name"
+                  label="Last Name"
+                  required
+                  variant="outlined"
+                  fullWidth
+                />
+              </div>
+              <div className="field-container">
+                <TextField
+                  value={deliveryPartner.email}
+                  onChange={(e) => {
+                    setDeliveryPartner({
+                      ...deliveryPartner,
+                      email: e.target.value,
+                    });
+                  }}
+                  type="email"
+                  id="email"
+                  label="Email"
+                  required
+                  variant="outlined"
+                  fullWidth
+                />
+              </div>
+              <div className="field-container">
+                <TextField
+                  value={deliveryPartner.password}
+                  onChange={(e) => {
+                    setDeliveryPartner({
+                      ...deliveryPartner,
+                      password: e.target.value,
+                    });
+                  }}
+                  type="password"
+                  id="password"
+                  label="Password"
+                  required
+                  variant="outlined"
+                  fullWidth
+                />
+              </div>
+              <div className="field-container">
+                <TextField
+                  value={deliveryPartner.confirmPassword}
+                  onChange={(e) => {
+                    setDeliveryPartner({
+                      ...deliveryPartner,
+                      confirmPassword: e.target.value,
+                    });
+                  }}
+                  type="password"
+                  id="confirm-password"
+                  label="Confirm password"
+                  required
+                  variant="outlined"
+                  fullWidth
+                />
+              </div>
+              <div className="field-container">
+                <Button
+                  className="bg-green"
+                  variant="contained"
+                  type="submit"
+                  fullWidth
+                >
+                  Register
+                </Button>
+              </div>
+              <div className="button-header">
+                <Button
+                  className="color-green"
+                  onClick={() => {
+                    navigate("/customer-auth");
+                  }}
+                >
+                  Customer?
+                </Button>
+                |
+                <Button
+                  className="color-green"
+                  onClick={() => {
+                    navigate("/shop-auth");
+                  }}
+                >
+                  Shop Owner?
+                </Button>
+              </div>
+            </>
+          )}
+        </div>
       </form>
     </div>
   );
