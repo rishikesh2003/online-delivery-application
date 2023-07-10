@@ -30,7 +30,7 @@ function DeliveryPartnerLogin() {
             type="email"
             id="email"
             label="Email"
-            variant="filled"
+            variant="outlined"
             fullWidth
           />
         </div>
@@ -47,7 +47,7 @@ function DeliveryPartnerLogin() {
             type="password"
             id="password"
             label="Password"
-            variant="filled"
+            variant="outlined"
             fullWidth
           />
         </div>
