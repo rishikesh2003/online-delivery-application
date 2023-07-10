@@ -26,5 +26,12 @@ form {
 
 form h1 {
   font-weight: normal;
-  font-size: 28px;
+  font-size: 22px;
+  text-align: center;
+}
+
+form .button-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
