@@ -115,7 +115,7 @@ function CustomerAuth() {
               |
               <Button
                 onClick={() => {
-                  navigate("shop-auth");
+                  navigate("/shop-auth");
                 }}
               >
                 Shop Owner?
@@ -210,7 +210,7 @@ function CustomerAuth() {
               |
               <Button
                 onClick={() => {
-                  navigate("shop-auth");
+                  navigate("/shop-auth");
                 }}
               >
                 Shop Owner?
