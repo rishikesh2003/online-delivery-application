@@ -7,7 +7,7 @@ function DeliveryPartnerAuth() {
   const navigate = useNavigate();
   const [state, setState] = useState("login");
 
-  const [deliveryPartnerLogin, setCustomerLogin] = useState({
+  const [deliveryPartnerLogin, setDeliveryPartnerLogin] = useState({
     email: "",
     password: "",
   });
@@ -71,7 +71,7 @@ function DeliveryPartnerAuth() {
                 required
                 value={deliveryPartnerLogin.email}
                 onChange={(e) => {
-                  setCustomerLogin({
+                  setDeliveryPartnerLogin({
                     ...deliveryPartnerLogin,
                     email: e.target.value,
                   });
@@ -88,7 +88,7 @@ function DeliveryPartnerAuth() {
                 required
                 value={deliveryPartnerLogin.password}
                 onChange={(e) => {
-                  setCustomerLogin({
+                  setDeliveryPartnerLogin({
                     ...deliveryPartnerLogin,
                     password: e.target.value,
                   });
@@ -115,7 +115,7 @@ function DeliveryPartnerAuth() {
                   navigate("/");
                 }}
               >
-                Customer
+                Customer?
               </Button>
               |
               <Button
