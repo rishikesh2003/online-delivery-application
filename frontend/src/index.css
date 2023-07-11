@@ -45,15 +45,15 @@ form .button-header {
 }
 
 .bg-green {
-  background: green !important;
+  background: #862b0d !important;
 }
 
 .color-green {
-  color: green !important;
+  color: #862b0d !important;
 }
 
 form a {
-  color: green;
+  color: #862b0d;
   font-size: 15px;
 }
 

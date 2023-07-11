@@ -47,7 +47,9 @@ function ShopAuth() {
         <div className="gif">
           <img src="/deliverygif.gif" alt="gif" />
         </div>
+
         <div>
+          <h1>Shop Owner</h1>
           <div className="button-header">
             <Button
               className="color-green"
@@ -67,7 +69,6 @@ function ShopAuth() {
               Register
             </Button>
           </div>
-          <h1>Shop Owner</h1>
           {state === "login" ? (
             <>
               <div className="field-container">

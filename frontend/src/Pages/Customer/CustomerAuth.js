@@ -49,6 +49,8 @@ function CustomerAuth() {
           <img src="/deliverygif.gif" alt="gif" />
         </div>
         <div>
+          <h1>Customer</h1>
+
           <div className="button-header">
             <Button
               className="color-green"
@@ -69,7 +71,6 @@ function CustomerAuth() {
             </Button>
           </div>
 
-          <h1>Customer</h1>
           {state === "login" ? (
             <>
               <div className="field-container">

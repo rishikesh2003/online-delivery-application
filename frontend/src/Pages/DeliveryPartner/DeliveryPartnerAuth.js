@@ -49,6 +49,7 @@ function DeliveryPartnerAuth() {
           <img src="/deliverygif.gif" alt="gif" />
         </div>
         <div>
+          <h1>Delivery Partner</h1>
           <div className="button-header">
             <Button
               className="color-green"
@@ -68,7 +69,6 @@ function DeliveryPartnerAuth() {
               Register
             </Button>
           </div>
-          <h1>Delivery Partner</h1>
 
           {state === "login" ? (
             <>
