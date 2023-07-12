@@ -6,14 +6,15 @@ import Error from "./Pages/Error/Error";
 import CustomerAuth from "./Pages/Customer/CustomerAuth";
 import ForgotPass from "./Pages/ForgotPass/ForgotPass";
 import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer";
 
 function App() {
   const isLoggedIn = false;
   return (
     <Router>
+      <Navbar />
       {isLoggedIn ? (
         <>
-          <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="*" element={<Error />} />
@@ -21,7 +22,6 @@ function App() {
         </>
       ) : (
         <>
-          <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/customer-auth" element={<CustomerAuth />} />
@@ -32,6 +32,7 @@ function App() {
           </Routes>
         </>
       )}
+      <Footer />
     </Router>
   );
 }

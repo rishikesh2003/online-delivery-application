@@ -10,12 +10,17 @@ import {
   Button,
   Tooltip,
   MenuItem,
+  Badge,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useNavigate } from "react-router-dom";
 
-const pages = [{ name: "Home", link: "/" }];
+const pages = [
+  { name: "Home", link: "/" },
+  { name: "Daily Deals", link: "/" },
+];
 const settings = [{ name: "Login", link: "customer-auth" }];
 
 function Navbar() {
@@ -100,6 +105,7 @@ function Navbar() {
               ))}
             </Menu>
           </Box>
+
           <Typography
             variant="h5"
             noWrap
@@ -134,8 +140,19 @@ function Navbar() {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip>
+              <Badge badgeContent="0" color="primary">
+                <IconButton
+                  style={{ backgroundColor: "white", padding: "5px" }}
+                  sx={{ p: 0 }}
+                >
+                  <ShoppingCartIcon />
+                </IconButton>
+              </Badge>
+            </Tooltip>{" "}
+            &nbsp;&nbsp;&nbsp;
+            <Tooltip>
               <IconButton
-                style={{ backgroundColor: "white" }}
+                style={{ backgroundColor: "white", padding: "5px" }}
                 onClick={handleOpenUserMenu}
                 sx={{ p: 0 }}
               >
