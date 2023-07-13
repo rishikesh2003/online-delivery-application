@@ -7,16 +7,22 @@ import CustomerAuth from "./Pages/Customer/CustomerAuth";
 import ForgotPass from "./Pages/ForgotPass/ForgotPass";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
+import { useSelector } from "react-redux";
+import Logout from "./Pages/Logout/Logout";
+import ByCategory from "./Pages/Products/ByCategory";
 
 function App() {
-  const isLoggedIn = false;
+  const user = useSelector((state) => state.user.user);
   return (
     <Router>
       <Navbar />
-      {isLoggedIn ? (
+      {user[0] ? (
         <>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/forgot-password" element={<ForgotPass />} />
+            <Route path="/logout" element={<Logout />} />
+            <Route path="/products/:category" element={<ByCategory />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </>
@@ -24,6 +30,7 @@ function App() {
         <>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/products/:category" element={<ByCategory />} />
             <Route path="/customer-auth" element={<CustomerAuth />} />
             <Route path="/del-partner-auth" element={<DeliveryPartnerAuth />} />
             <Route path="/shop-auth" element={<ShopAuth />} />

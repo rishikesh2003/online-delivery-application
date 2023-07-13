@@ -1,7 +1,11 @@
 import { TextField, Button } from "@mui/material";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../Slice/userSlice";
+
 function ShopAuth() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [state, setState] = useState("login");
 
@@ -12,7 +16,8 @@ function ShopAuth() {
 
   function handleLogin(e) {
     e.preventDefault();
-    console.log(shopOwnerLogin);
+    dispatch(loginUser({ email: shopOwnerLogin.email, role: "shop-owner" }));
+    navigate("/");
   }
 
   const [shopOwner, setShopOwner] = useState({
@@ -29,7 +34,8 @@ function ShopAuth() {
     if (shopOwner.password !== shopOwner.confirmPassword) {
       alert("Passwords won't match");
     } else {
-      console.log(shopOwner);
+      dispatch(loginUser({ email: shopOwner.email, role: "shop-owner" }));
+      navigate("/");
     }
   }
 

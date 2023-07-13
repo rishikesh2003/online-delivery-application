@@ -1,5 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import HomeCarousel from "../../Components/HomeCarousel";
 import { TextField, Button } from "@mui/material";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import Brands from "../../Components/Brands";
 function Home() {
   const images = [
     { src: "fruitsandveg.webp", p: "Fruits & Vegetables" },
@@ -22,6 +26,15 @@ function Home() {
     { src: "bandmakeup.webp", p: "Beauty & Makeup" },
     { src: "kandhome.jpg", p: "Kitchen & Home" },
   ];
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position);
+      });
+    }
+  }, []);
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.user.user);
   return (
     <>
       <div className="search-box">
@@ -53,6 +66,35 @@ function Home() {
               </div>
             ))}
           </div>
+        </div>
+        <div className="brands">
+          <h1>Our Top Brands</h1>
+          <div className="brands-img">
+            <Brands />
+          </div>
+        </div>
+        <div className="text-banner">
+          <h2>Get your groceries delivered as fast as today</h2>
+
+          {user[0] ? (
+            <Button
+              onClick={() => {
+                navigate("/daily-deals");
+              }}
+              variant="contained"
+            >
+              Shop now
+            </Button>
+          ) : (
+            <Button
+              onClick={() => {
+                navigate("/customer-auth");
+              }}
+              variant="contained"
+            >
+              Sign in to Shop
+            </Button>
+          )}
         </div>
       </div>
     </>

@@ -2,9 +2,12 @@ import { TextField, Button } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../Slice/userSlice";
 
 function CustomerAuth() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [customerLogin, setCustomerLogin] = useState({
     email: "",
     password: "",
@@ -22,7 +25,8 @@ function CustomerAuth() {
 
   function handleLogin(e) {
     e.preventDefault();
-    console.log(customerLogin);
+    dispatch(loginUser({ email: customerLogin.email, role: "customer" }));
+    navigate("/");
   }
 
   function handleRegister(e) {
@@ -30,7 +34,8 @@ function CustomerAuth() {
     if (customer.password !== customer.confirmPassword) {
       alert("Passwords won't match");
     } else {
-      console.log(customer);
+      dispatch(loginUser({ email: customer.email, role: "customer" }));
+      navigate("/");
     }
   }
 

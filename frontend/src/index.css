@@ -81,6 +81,7 @@ footer {
 }
 
 .category-container {
+  border-top: 5px solid #862b0d;
   padding: 20px;
   background: #fcc5b581;
 }
@@ -136,4 +137,45 @@ footer {
   background: #862b0d !important;
   padding-left: 30px !important;
   padding-right: 30px !important;
+}
+
+.text-banner {
+  text-align: center;
+  color: #862b0d;
+  width: 100%;
+  padding: 30px 20px;
+  background: #fcc5b581;
+}
+
+.text-banner button {
+  background: #862b0d !important;
+  margin: 10px 0;
+  padding: 20px;
+}
+
+.brands {
+  background: #fcc5b581;
+  color: #862b0d;
+  border-top: 5px solid #862b0d;
+}
+
+.brands-img {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.brands-img img {
+  width: 200px;
+  margin: 5px;
+}
+
+.brands h1 {
+  text-align: center;
+  font-style: italic;
+  text-transform: uppercase;
+  padding-top: 20px;
 }

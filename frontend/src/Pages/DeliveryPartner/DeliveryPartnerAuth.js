@@ -2,8 +2,11 @@ import { TextField, Button } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../Slice/userSlice";
 
 function DeliveryPartnerAuth() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [state, setState] = useState("login");
 
@@ -14,7 +17,10 @@ function DeliveryPartnerAuth() {
 
   function handleLogin(e) {
     e.preventDefault();
-    console.log(deliveryPartnerLogin);
+    dispatch(
+      loginUser({ email: deliveryPartnerLogin.email, role: "del-partner" })
+    );
+    navigate("/");
   }
 
   const [deliveryPartner, setDeliveryPartner] = useState({
@@ -30,7 +36,10 @@ function DeliveryPartnerAuth() {
     if (deliveryPartner.password !== deliveryPartner.confirmPassword) {
       alert("Passwords won't match");
     } else {
-      console.log(deliveryPartner);
+      dispatch(
+        loginUser({ email: deliveryPartner.email, role: "del-partner" })
+      );
+      navigate("/");
     }
   }
 

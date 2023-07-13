@@ -16,14 +16,20 @@ import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useNavigate } from "react-router-dom";
-
-const pages = [
-  { name: "Home", link: "/" },
-  { name: "Daily Deals", link: "/" },
-];
-const settings = [{ name: "Login", link: "customer-auth" }];
+import { useSelector } from "react-redux";
 
 function Navbar() {
+  const user = useSelector((state) => state.user.user);
+  const pages = [
+    { name: "🏠Home", link: "/" },
+    { name: "💯Daily Deals", link: "/daily-deals" },
+  ];
+  const settings = user[0]
+    ? [
+        { name: "📋DashBoard", link: "/dashboard" },
+        { name: "📤Logout", link: "/logout" },
+      ]
+    : [{ name: "⬇️Login/Register", link: "/customer-auth" }];
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -48,11 +54,13 @@ function Navbar() {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
+            onClick={() => {
+              navigate("/");
+            }}
             variant="h6"
             noWrap
-            component="a"
-            href="/"
             sx={{
+              cursor: "pointer",
               mr: 2,
               display: { xs: "none", md: "flex" },
               fontWeight: 700,
@@ -109,9 +117,11 @@ function Navbar() {
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href=""
+            onClick={() => {
+              navigate("/");
+            }}
             sx={{
+              cursor: "pointer",
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
