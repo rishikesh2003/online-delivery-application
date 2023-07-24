@@ -10,6 +10,8 @@ import Footer from "./Components/Footer";
 import { useSelector } from "react-redux";
 import Logout from "./Pages/Logout/Logout";
 import ByCategory from "./Pages/Products/ByCategory";
+import DashBoard from "./Pages/Dashboard/Dashboard";
+import AddProduct from "./Pages/Dashboard/ShopOwner/AddProducts";
 
 function App() {
   const user = useSelector((state) => state.user.user);
@@ -20,9 +22,11 @@ function App() {
         <>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/dashboard" element={<DashBoard />} />
             <Route path="/forgot-password" element={<ForgotPass />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/products/:category" element={<ByCategory />} />
+            <Route path="/dashboard/add-product" element={<AddProduct />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </>

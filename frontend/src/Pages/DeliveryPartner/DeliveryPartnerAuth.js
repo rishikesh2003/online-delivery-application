@@ -4,8 +4,12 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../Slice/userSlice";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function DeliveryPartnerAuth() {
+  const notify = (message) => toast.error(message);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [state, setState] = useState("login");
@@ -15,12 +19,32 @@ function DeliveryPartnerAuth() {
     password: "",
   });
 
-  function handleLogin(e) {
+  async function handleLogin(e) {
     e.preventDefault();
-    dispatch(
-      loginUser({ email: deliveryPartnerLogin.email, role: "del-partner" })
-    );
-    navigate("/");
+    try {
+      const data = {
+        email: deliveryPartnerLogin.email,
+        password: deliveryPartnerLogin.password,
+      };
+      console.log(data);
+      const res = await axios.post(
+        "http://localhost:8080/api/v1/auth/authenticate",
+        data
+      );
+      console.log(res);
+      dispatch(
+        loginUser({
+          email: deliveryPartnerLogin.email,
+          password: deliveryPartnerLogin.password,
+          role: "deliveryPartner",
+          loggedIn: true,
+        })
+      );
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+      notify("Invalid Email/Password");
+    }
   }
 
   const [deliveryPartner, setDeliveryPartner] = useState({
@@ -31,21 +55,47 @@ function DeliveryPartnerAuth() {
     confirmPassword: "",
   });
 
-  function handleRegister(e) {
+  async function handleRegister(e) {
     e.preventDefault();
-    if (deliveryPartner.password !== deliveryPartner.confirmPassword) {
-      alert("Passwords won't match");
-    } else {
-      dispatch(
-        loginUser({ email: deliveryPartner.email, role: "del-partner" })
-      );
-      navigate("/");
+    try {
+      if (deliveryPartner.password !== deliveryPartner.confirmPassword) {
+        notify("Passwords won't match");
+      } else {
+        const data = {
+          name: deliveryPartner.firstName + " " + deliveryPartner.lastName,
+          email: deliveryPartner.email,
+          role: "deliveryPartner",
+          password: deliveryPartner.password,
+        };
+        console.log(data);
+        const res = await axios.post(
+          "http://localhost:8080/api/v1/auth/register",
+          data
+        );
+        if (res.data.token === "Email Already exists") {
+          notify("Email already exists");
+        } else {
+          dispatch(
+            loginUser({
+              email: deliveryPartner.email,
+              password: deliveryPartner.password,
+              token: res.data.token,
+              role: "deliveryPartner",
+              loggedIn: true,
+            })
+          );
+          navigate("/");
+        }
+      }
+    } catch (err) {
+      notify("Unknown error: " + err.message);
     }
   }
 
   return (
     <div className="flex-center-full-hw">
       <form
+        className="auth-form"
         onSubmit={(e) => {
           if (state === "login") {
             handleLogin(e);
@@ -268,6 +318,7 @@ function DeliveryPartnerAuth() {
             </>
           )}
         </div>
+        <ToastContainer />
       </form>
     </div>
   );

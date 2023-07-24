@@ -16,7 +16,7 @@
   background: url(./images/bg.jpg) no-repeat center center/cover;
 }
 
-form {
+.auth-form {
   padding: 20px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px,
     rgba(0, 0, 0, 0.05) 0px 5px 10px;
@@ -38,7 +38,7 @@ form h1 {
   text-align: center;
 }
 
-form .button-header {
+.auth-form .button-header {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -66,10 +66,10 @@ footer {
 }
 
 @media (max-width: 768px) {
-  form {
+  .auth-form {
     flex-direction: column;
   }
-  form .gif img {
+  .auth-form .gif img {
     height: 200px;
   }
 }
@@ -178,4 +178,13 @@ footer {
   font-style: italic;
   text-transform: uppercase;
   padding-top: 20px;
+}
+
+.add-prod-form {
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px,
+    rgba(0, 0, 0, 0.05) 0px 5px 10px;
+  border-radius: 15px;
+  min-width: 300px;
+  background: rgb(255, 255, 236);
 }

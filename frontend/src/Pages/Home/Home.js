@@ -26,15 +26,22 @@ function Home() {
     { src: "bandmakeup.webp", p: "Beauty & Makeup" },
     { src: "kandhome.jpg", p: "Kitchen & Home" },
   ];
+  const user = useSelector((state) => state.user.user);
+  const navigate = useNavigate();
   useEffect(() => {
+    if (user.length !== 0) {
+      if (user[0].role === "del-partner") {
+        navigate("/dashboard");
+      } else if (user[0].role === "shop-owner") {
+        navigate("/dashboard");
+      }
+    }
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         console.log(position);
       });
     }
-  }, []);
-  const navigate = useNavigate();
-  const user = useSelector((state) => state.user.user);
+  }, [user, navigate]);
   return (
     <>
       <div className="search-box">
@@ -60,7 +67,21 @@ function Home() {
           </h1>
           <div className="categories">
             {images.map((img) => (
-              <div key={img.p} className="category-card">
+              <div
+                onClick={() => {
+                  navigate(
+                    `/products/${img.p
+                      .split(" ")
+                      .join("-")
+                      .toLocaleLowerCase()
+                      .split("&")
+                      .join("and")}`,
+                    { state: { category: img.p } }
+                  );
+                }}
+                key={img.p}
+                className="category-card"
+              >
                 <img src={"/images/category/" + img.src} alt={img.p} />
                 <p>{img.p}</p>
               </div>

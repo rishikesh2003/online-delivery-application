@@ -4,8 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../Slice/userSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 function CustomerAuth() {
+  const notify = (message) => toast.error(message);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [customerLogin, setCustomerLogin] = useState({
@@ -23,25 +28,74 @@ function CustomerAuth() {
 
   const [state, setState] = useState("login");
 
-  function handleLogin(e) {
+  async function handleLogin(e) {
     e.preventDefault();
-    dispatch(loginUser({ email: customerLogin.email, role: "customer" }));
-    navigate("/");
+    try {
+      const data = {
+        email: customerLogin.email,
+        password: customerLogin.password,
+      };
+      console.log(data);
+      const res = await axios.post(
+        "http://localhost:8080/api/v1/auth/authenticate",
+        data
+      );
+      console.log(res);
+      dispatch(
+        loginUser({
+          email: customerLogin.email,
+          password: customerLogin.password,
+          token: res.data.token,
+          role: "customer",
+          loggedIn: true,
+        })
+      );
+      navigate("/");
+    } catch (e) {
+      notify("Invalid Email/Password");
+    }
   }
 
-  function handleRegister(e) {
+  async function handleRegister(e) {
     e.preventDefault();
-    if (customer.password !== customer.confirmPassword) {
-      alert("Passwords won't match");
-    } else {
-      dispatch(loginUser({ email: customer.email, role: "customer" }));
-      navigate("/");
+    try {
+      const data = {
+        name: customer.firstName + " " + customer.lastName,
+        email: customer.email,
+        role: "customer",
+        password: customer.password,
+      };
+      if (customer.password !== customer.confirmPassword) {
+        notify("Passwords won't match");
+      } else {
+        const res = await axios.post(
+          "http://localhost:8080/api/v1/auth/register",
+          data
+        );
+        if (res.data.token === "Email Already exists") {
+          notify("Email already exists");
+        } else {
+          dispatch(
+            loginUser({
+              email: customer.email,
+              password: customer.password,
+              token: res.data.token,
+              role: "customer",
+              loggedIn: true,
+            })
+          );
+          navigate("/");
+        }
+      }
+    } catch (err) {
+      notify("Unknown error: " + err.message);
     }
   }
 
   return (
     <div className="flex-center-full-hw">
       <form
+        className="auth-form"
         onSubmit={(e) => {
           if (state === "login") {
             handleLogin(e);
@@ -252,6 +306,7 @@ function CustomerAuth() {
             </>
           )}
         </div>
+        <ToastContainer />
       </form>
     </div>
   );

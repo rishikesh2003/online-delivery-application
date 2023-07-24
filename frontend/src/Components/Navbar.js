@@ -20,16 +20,36 @@ import { useSelector } from "react-redux";
 
 function Navbar() {
   const user = useSelector((state) => state.user.user);
-  const pages = [
-    { name: "🏠Home", link: "/" },
-    { name: "💯Daily Deals", link: "/daily-deals" },
-  ];
+
+  const pages =
+    user[0]?.role === "deliveryPartner"
+      ? [
+          { name: "📋Dashboard", link: "/dashboard" },
+          { name: "📃Orders", link: "/dashboard/orders" },
+        ]
+      : user[0]?.role === "shop"
+      ? [
+          { name: "📋Dashboard", link: "/dashboard" },
+          { name: "➕Add Product", link: "/dashboard/add-product" },
+          { name: "📃Orders", link: "/dashboard/orders" },
+        ]
+      : [
+          { name: "🏠Home", link: "/" },
+          { name: "💯Daily Deals", link: "/daily-deals" },
+        ];
   const settings = user[0]
-    ? [
-        { name: "📋DashBoard", link: "/dashboard" },
-        { name: "📤Logout", link: "/logout" },
-      ]
-    : [{ name: "⬇️Login/Register", link: "/customer-auth" }];
+    ? user[0].role === "customer"
+      ? [
+          { name: "📋Dashboard", link: "/dashboard" },
+          { name: "🙍Your Profile", link: "/dashboard/profile" },
+          { name: "📃Orders", link: "/dashboard/orders" },
+          { name: "📤Logout", link: "/logout" },
+        ]
+      : [
+          { name: "🙍Your Profile", link: "/dashboard/profile" },
+          { name: "📤Logout", link: "/logout" },
+        ]
+    : [{ name: "⬇️ Login/Register", link: "/customer-auth" }];
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -149,17 +169,23 @@ function Navbar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip>
-              <Badge badgeContent="0" color="primary">
-                <IconButton
-                  style={{ backgroundColor: "white", padding: "5px" }}
-                  sx={{ p: 0 }}
-                >
-                  <ShoppingCartIcon />
-                </IconButton>
-              </Badge>
-            </Tooltip>{" "}
-            &nbsp;&nbsp;&nbsp;
+            {user[0]?.role === "customer" || user.length === 0 ? (
+              <>
+                <Tooltip>
+                  <Badge badgeContent="0" color="primary">
+                    <IconButton
+                      style={{ backgroundColor: "white", padding: "5px" }}
+                      sx={{ p: 0 }}
+                    >
+                      <ShoppingCartIcon />
+                    </IconButton>
+                  </Badge>
+                </Tooltip>
+                &nbsp;&nbsp;&nbsp;
+              </>
+            ) : (
+              <></>
+            )}
             <Tooltip>
               <IconButton
                 style={{ backgroundColor: "white", padding: "5px" }}
