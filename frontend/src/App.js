@@ -12,9 +12,19 @@ import Logout from "./Pages/Logout/Logout";
 import ByCategory from "./Pages/Products/ByCategory";
 import DashBoard from "./Pages/Dashboard/Dashboard";
 import AddProduct from "./Pages/Dashboard/ShopOwner/AddProducts";
+import { useEffect } from "react";
+import Cart from "./Pages/Cart/Cart";
+import EditProduct from "./Pages/Dashboard/ShopOwner/EditProduct";
+import Search from "./Pages/Search.js/Search";
 
 function App() {
   const user = useSelector((state) => state.user.user);
+  useEffect(() => {
+    const cart = localStorage.getItem("cart");
+    if (!cart) {
+      localStorage.setItem("cart", JSON.stringify([]));
+    }
+  }, []);
   return (
     <Router>
       <Navbar />
@@ -27,6 +37,9 @@ function App() {
             <Route path="/logout" element={<Logout />} />
             <Route path="/products/:category" element={<ByCategory />} />
             <Route path="/dashboard/add-product" element={<AddProduct />} />
+            <Route path="/dashboard/edit-product" element={<EditProduct />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/search" element={<Search />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </>
@@ -39,6 +52,8 @@ function App() {
             <Route path="/del-partner-auth" element={<DeliveryPartnerAuth />} />
             <Route path="/shop-auth" element={<ShopAuth />} />
             <Route path="/forgot-password" element={<ForgotPass />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/search" element={<Search />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </>

@@ -1,27 +1,31 @@
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
 import axios from "axios";
 import ProductCard from "../../Components/ProductCard";
 
-function ByCategory() {
-  const state = useLocation();
-  const { category } = state.state;
-  const [products, setProducts] = useState(null);
+function Search() {
+  const [products, setProducts] = useState([]);
 
+  const state = useLocation().state;
   useEffect(() => {
     async function getProducts() {
-      const res = await axios.get(
-        "http://localhost:8080/api/products/" + category
+      const res = await axios.get("http://localhost:8080/api/products/");
+      const prod = await res.data.filter((p) =>
+        p.name.toLowerCase().includes(state)
       );
-
-      console.log(res.data);
-      await setProducts(res.data);
+      setProducts(prod);
     }
     getProducts();
-  }, [category]);
+  }, [state]);
   return (
     <>
-      <h1 style={{ textAlign: "center", padding: "20px" }}>{category}</h1>
+      {products.length === 0 ? (
+        <h1 style={{ textAlign: "center", padding: "20px" }}>
+          No Results Found
+        </h1>
+      ) : (
+        <></>
+      )}
       <div
         style={{
           display: "flex",
@@ -38,4 +42,4 @@ function ByCategory() {
   );
 }
 
-export default ByCategory;
+export default Search;

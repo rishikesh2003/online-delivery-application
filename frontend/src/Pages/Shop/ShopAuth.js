@@ -66,6 +66,7 @@ function ShopAuth() {
           email: shopOwner.email,
           role: "shop",
           password: shopOwner.password,
+          shopName: shopOwner.shopName,
         };
         console.log(data);
         const res = await axios.post(

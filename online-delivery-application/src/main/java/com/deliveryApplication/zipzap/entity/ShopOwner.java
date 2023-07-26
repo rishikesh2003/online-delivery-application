@@ -2,7 +2,7 @@ package com.deliveryApplication.zipzap.entity;
 
 import java.util.List;
 
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,7 +32,8 @@ public class ShopOwner {
     @OneToMany(mappedBy = "shop")
     private List<Order> orders;
 
-    @OneToMany(mappedBy = "shopOwner")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "shopOwner")
+    
     private List<Product> products;
 
 

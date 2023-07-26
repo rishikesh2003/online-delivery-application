@@ -174,6 +174,9 @@ function Navbar() {
                 <Tooltip>
                   <Badge badgeContent="0" color="primary">
                     <IconButton
+                      onClick={() => {
+                        navigate("/cart");
+                      }}
                       style={{ backgroundColor: "white", padding: "5px" }}
                       sx={{ p: 0 }}
                     >

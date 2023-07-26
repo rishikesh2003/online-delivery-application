@@ -8,20 +8,22 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function AddProduct() {
+function EditProduct() {
   const notify = (message) => toast.success(message);
 
+  const state = useLocation().state;
   const [product, setProduct] = useState({
-    name: "",
-    prodCategory: "",
-    description: "",
-    quantity: 0,
-    price: 0,
-    imgURL: "",
+    id: state.id,
+    name: state.name,
+    prodCategory: state.category,
+    description: state.description,
+    quantity: state.quantity,
+    price: state.price,
+    imgURL: state.imgURL,
   });
   const category = [
     { content: "Fruits & Vegetables" },
@@ -44,13 +46,13 @@ function AddProduct() {
     { content: "Beauty & Makeup" },
     { content: "Kitchen & Home" },
   ];
-  const user = useSelector((state) => state.user.user);
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const res = await axios.post(
-      `http://localhost:8080/api/shop-owners/create-product/${user[0].email}`,
+    await axios.put(
+      `http://localhost:8080/api/shop-owners/edit-product/${product.id}`,
       {
+        id: product.id,
         name: product.name,
         imgURL: product.imgURL,
         category: product.prodCategory,
@@ -59,9 +61,9 @@ function AddProduct() {
         description: product.description,
       }
     );
-    await console.log(res);
-    await notify("Product added successfully");
+    await notify("Product edited successfully");
   }
+
   return (
     <div className="flex-center-full-hw">
       <form
@@ -71,7 +73,7 @@ function AddProduct() {
         className="add-prod-form"
       >
         <div>
-          <h1>Add Product</h1>
+          <h1>Edit Product</h1>
           <div className="field-container">
             <TextField
               value={product.name}
@@ -90,6 +92,7 @@ function AddProduct() {
               onChange={(event) => {
                 setProduct({ ...product, imgURL: event.target.value });
               }}
+              value={product.imgURL}
               type="text"
               fullWidth
               variant="outlined"
@@ -160,7 +163,7 @@ function AddProduct() {
             variant="contained"
             className="bg-green"
           >
-            Add Product
+            Edit Product
           </Button>
         </div>
         <ToastContainer />
@@ -169,4 +172,4 @@ function AddProduct() {
   );
 }
 
-export default AddProduct;
+export default EditProduct;

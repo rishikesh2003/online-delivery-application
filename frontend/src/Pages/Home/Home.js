@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import HomeCarousel from "../../Components/HomeCarousel";
 import { TextField, Button } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Brands from "../../Components/Brands";
 function Home() {
+  const [search, setSearch] = useState();
   const images = [
     { src: "fruitsandveg.webp", p: "Fruits & Vegetables" },
     { src: "snacksandbiscuits.jpg", p: "Snacks & Biscuits" },
@@ -30,9 +31,9 @@ function Home() {
   const navigate = useNavigate();
   useEffect(() => {
     if (user.length !== 0) {
-      if (user[0].role === "del-partner") {
+      if (user[0].role === "deliveryPartner") {
         navigate("/dashboard");
-      } else if (user[0].role === "shop-owner") {
+      } else if (user[0].role === "shop") {
         navigate("/dashboard");
       }
     }
@@ -46,12 +47,24 @@ function Home() {
     <>
       <div className="search-box">
         <TextField
+          required
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
           id="search"
           label="Search for Products"
           fullWidth
           variant="outlined"
         />
-        <Button variant="contained">Search</Button>
+        <Button
+          onClick={() => {
+            navigate("/search", { state: search });
+          }}
+          variant="contained"
+        >
+          Search
+        </Button>
       </div>
       <div className="showcase">
         <HomeCarousel />
